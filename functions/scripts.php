@@ -2,8 +2,9 @@
 
 function moscourier_enqueue_scripts() {
 	global $moscourier_options;
-	wp_enqueue_script( 'jquery' );	
-	wp_register_style( 'google-font', 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Oxygen:300,400,700' );
+	
+	wp_register_style( 'google-font', 'https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900|Roboto:100,300,400,500,700,900&display=swap' );
+	wp_enqueue_style( 'google-font' );
 	wp_enqueue_style( 'google-font' );
 	wp_register_style( 'font-awesome.min', get_template_directory_uri() . '/fonts/font-awesome-4.7.0/css/font-awesome.min.css' );
 	wp_enqueue_style( 'font-awesome.min' );

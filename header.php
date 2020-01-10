@@ -29,6 +29,14 @@ else $page_id = get_the_ID();
     <?php endif; ?>
     </div>
 <?php endif; ?>
+
+	<div id="contact-bar" class="theme-bg">
+		<div class="content-wrap">
+			<div class="container">
+				<div class="text-center"><?php echo do_shortcode( "[phone all=1 seperator=', ']" ); ?></div>
+			</div>
+		</div>
+	</div>
 	<?php 
 	$header_class=$moscourier_options['sections-header-class']; 
 	$title_class=$moscourier_options['sections-title-class']; 

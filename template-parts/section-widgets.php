@@ -12,6 +12,10 @@ $page_details = array( 'id' => get_the_ID(), 'template_file' => basename( get_pa
 do_action( 'action_avobe_widgets', $page_details ); 
 ?>
 <section id="section-widgets" class="<?php if(@$moscourier_options['sections-widgets-background-type'] == 1) echo @$moscourier_options['sections-widgets-background'] . ' ';?><?php if(@$moscourier_options['sections-widgets-color-type'] == 1) echo @$moscourier_options['sections-widgets-color'];?> <?php echo $class ?>">
+	<svg class="widgets-bg" xmlns="http://www.w3.org/2000/svg" width="1920" height="423.03" viewBox="0 0 1920 423.03">
+		<rect class="bg-theme" x="-2" y="67.03" width="1922" height="449"></rect>
+		<path class="bg-theme" fill-rule="evenodd" d="M-12,3926.01s1165.76-152.82,1948,2.99" transform="translate(0 -3858.97)"></path>
+	</svg>
 	<div class="content-wrap">
 		
 		<?php do_action( 'action_before_widgets', $page_details ); ?>
