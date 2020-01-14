@@ -30,6 +30,7 @@ header.tiny{position: fixed;width: 100%;top: 0;z-index: 9999;}
 
 #contact-bar .content-wrap {padding: 5px 0; }
 #contact-bar a {color: #ffffff; }
+#contact-bar .phone-number-wrap:before{font-family: 'FontAwesome';content: "\f098";display: inline-block;vertical-align: top;margin-right: 10px;}
 
 #banner-section {background-image: url(../svgs/bg-wave-img.svg); background-position: center bottom; }
 #section-banner .wrapper img{width:100%;height:auto}
