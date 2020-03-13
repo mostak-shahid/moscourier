@@ -27,6 +27,7 @@ a:visited,a:hover,a:active,a:focus{text-decoration:none}
 section,footer,#footer{position:relative}
 header{box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;}
 header.tiny{position: fixed;width: 100%;top: 0;z-index: 9999;}
+header .vc_row[data-vc-full-width],footer .vc_row[data-vc-full-width]{overflow: unset}
 
 #contact-bar .content-wrap {padding: 5px 0; }
 #contact-bar a {color: #ffffff; }
