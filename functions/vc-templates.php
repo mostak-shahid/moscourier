@@ -91,6 +91,7 @@ function mos_counter_func( $atts = array(), $content = '' ) {
 	$atts = shortcode_atts( array(
 		'image' => '',
 		'number' => 0,
+		'icon' => '+',
 		'text' => '',
 		'link' => '',
 	), $atts, 'mos-counter' );	
@@ -100,7 +101,7 @@ function mos_counter_func( $atts = array(), $content = '' ) {
 	}
 		$html .= '<div class="card-body">';
 		if ($atts['number']){
-			$html .= '<h5 class="card-title"><span class="counter">'.$atts['number'].'</span>+</h5>';
+			$html .= '<h5 class="card-title"><span class="counter">'.$atts['number'].'</span>'.$atts['icon'].'</h5>';
 		}
 		if ($atts['text']){
 			$html .= '<div class="card-text">'.$atts['text'].'</div>';
@@ -146,6 +147,14 @@ function mos_counter_vc() {
 				"heading" => __( "Number", "my-text-domain" ),
 				"param_name" => "number",
 				"value" => 0,
+			),
+			array(
+				"type" => "textfield",
+				"admin_label" => true,
+				"class" => "mos-count-vc-icon",
+				"heading" => __( "Number", "my-text-domain" ),
+				"param_name" => "icon",
+				"value" => '+',
 			),
 			array(
 				"type" => "vc_link",
