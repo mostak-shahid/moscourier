@@ -41,6 +41,11 @@ function moscourier_enqueue_scripts() {
 
 	wp_register_script('jPages.min', get_template_directory_uri() . '/plugins/jPages/jPages.min.js', 'jquery');
 	wp_enqueue_script( 'jPages.min' );
+
+	wp_register_script('waypoints.min', get_template_directory_uri() . '/plugins/jquery.counterup/waypoints.min.js', 'jquery');
+	wp_enqueue_script( 'waypoints.min' );
+	wp_register_script('jquery.counterup.min', get_template_directory_uri() . '/plugins/jquery.counterup/jquery.counterup.min.js', 'jquery');
+	wp_enqueue_script( 'jquery.counterup.min' );
 	
 
 

@@ -63,6 +63,16 @@ jQuery(document).ready(function($){
     $('#section-banner-owl .owl-next').html('<i class="fa fa-angle-right"></i>');
     $('#section-feature .slider-part .owl-prev').html('<i class="fa fa-arrow-circle-left"></i>');
     $('#section-feature .slider-part .owl-next').html('<i class="fa fa-arrow-circle-right"></i>');
+    
+    $('.counter').counterUp({
+        /*delay: 10,
+        time: 1000,
+        offset: 70,
+        beginAt: 100,
+        formatter: function (n) {
+          return n.replace(/,/g, '.');
+        });*/
+    });
 });
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 (function() {
