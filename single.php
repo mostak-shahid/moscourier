@@ -2,7 +2,7 @@
 global $moscourier_options;
 $from_theme_option = $moscourier_options['archive-page-sections'];
 $from_page_option = get_post_meta( get_the_ID(), '_moscourier_page_section_layout', true );
-$sections = ($from_page_option['Enabled'])?$from_page_option['Enabled']:$from_theme_option['Enabled'];
+$sections = (@$from_page_option['Enabled'])?$from_page_option['Enabled']:$from_theme_option['Enabled'];
 ?><?php get_header() ?>
 <section id="blogs" class="page-content <?php if(@$moscourier_options['sections-content-background-type'] == 1) echo @$moscourier_options['sections-content-background'];?>">
 	<div class="content-wrap">

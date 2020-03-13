@@ -60,7 +60,7 @@ header.tiny{position: fixed;width: 100%;top: 0;z-index: 9999;}
 .widget input[type="tel"],.widget input[type="time"],.widget input[type="url"],.widget input[type="week"],.widget input[type="password"],.widget input[type="color"],.widget input[type="date"],.widget input[type="datetime"],.widget input[type="datetime-local"],.widget input[type="email"],.widget input[type="month"],.widget input[type="number"],.widget select,.widget textarea {display:block;width:100%;height:calc(1.5em + .75rem + 2px);padding:.375rem .75rem;font-size:1rem;font-weight:400;line-height:1.5;color:#495057;background-color:#fff;background-clip:padding-box;border:1px solid #ced4da;border-radius:.25rem;transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out}
 .input-group-btn{margin-left:-3px}
 .btn-search{border:1px solid #ced4da;border-left-style:none} 
-
+#main-header .wpb_button, #main-header .wpb_content_element, #main-header ul.wpb_thumbnails-fluid>li{margin-bottom: 0;}
 
 
 /*Small devices (landscape phones,576px and up)*/

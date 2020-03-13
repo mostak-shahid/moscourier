@@ -29,14 +29,19 @@ else $page_id = get_the_ID();
     <?php endif; ?>
     </div>
 <?php endif; ?>
+<div class="container">
+	
 
-	<div id="contact-bar" class="theme-bg">
+	<?php // echo do_shortcode(get_post_field('post_content', '10670')); ?>
+
+	</div>
+	<!-- <div id="contact-bar" class="theme-bg">
 		<div class="content-wrap">
 			<div class="container">
-				<div class="text-center"><?php echo do_shortcode( "[phone all=1 seperator=', ']" ); ?></div>
+				<div class="text-center"><?php // echo do_shortcode( "[phone all=1 seperator=', ']" ); ?></div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 	<?php 
 	$header_class=$moscourier_options['sections-header-class']; 
 	$title_class=$moscourier_options['sections-title-class']; 
@@ -45,6 +50,24 @@ else $page_id = get_the_ID();
 	<header id="main-header" class="<?php if(@$moscourier_options['sections-header-background-type'] == 1) echo @$moscourier_options['sections-header-background'] . ' ';?><?php if(@$moscourier_options['sections-header-color-type'] == 1) echo @$moscourier_options['sections-header-color'];?> <?php echo $header_class?>">
 		<div class="content-wrap">
 			<div class="container">
+			<?php if (@$moscourier_options['sections-header-layout']) : ?>
+				<?php 
+				$my_postid = $moscourier_options['sections-header-layout'];//This is page id or post id
+				// echo do_shortcode(get_post_field('post_content', '10670'));
+				$shortcodes_custom_css = get_post_meta( $my_postid, '_wpb_shortcodes_custom_css', true );
+				if ( ! empty( $shortcodes_custom_css ) ) {
+				    $shortcodes_custom_css = strip_tags( $shortcodes_custom_css );
+				    echo '<style type="text/css" data-type="vc_shortcodes-custom-css">';
+				    echo $shortcodes_custom_css;
+				    echo '</style>';
+				}
+				$content_post = get_post($my_postid);
+				$content = $content_post->post_content;
+				$content = apply_filters('the_content', $content);
+				$content = str_replace(']]>', ']]&gt;', $content);
+				echo $content;
+				?>
+			<?php else : ?>
 				<nav class="navbar navbar-expand-md navbar-light navbar-custom-bg">			
 					<a class="navbar-brand" href="<?php echo home_url(); ?>">
 						<span class="<?php if($moscourier_options['logo']['id']) echo 'd-md-none';?>">
@@ -77,7 +100,8 @@ else $page_id = get_the_ID();
 						//'walker'          => new bs4navwalker()
 						]);
 					?>
-				</nav>				
+				</nav>	
+			<?php endif; ?>			
 			</div>
 		</div>
 	</header>

@@ -570,6 +570,12 @@
                 'validate'     => 'no_html',
             ),
             array(
+                'id'       => 'sections-header-layout',
+                'type'     => 'select',
+                'title'    => __( 'Header Layout', 'redux-framework-demo' ),
+                'options'  => mos_get_posts('layout'),
+            ),
+            array(
                 'id'       => 'sections-header-color-type',
                 'type'     => 'button_set',
                 'title'    => __( 'Section text color', 'redux-framework-demo' ),
@@ -1613,6 +1619,12 @@
                 'desc'     => 'You can add additional css class here.',
                 'validate'     => 'no_html',
             ), 
+            array(
+                'id'       => 'sections-footer-layout',
+                'type'     => 'select',
+                'title'    => __( 'Footer Layout', 'redux-framework-demo' ),
+                'options'  => mos_get_posts('layout'),
+            ),
             array(
                 'id'       => 'sections-footer-title',
                 'type'     => 'text',
