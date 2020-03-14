@@ -1,6 +1,6 @@
 <?php 
 global $moscourier_options;
-$class = $moscourier_options['sections-content-class'];
+$class = @$moscourier_options['sections-content-class'];
 $page_details = array( 'id' => get_the_ID(), 'template_file' => basename( get_page_template() ));
 do_action( 'action_avobe_blank', $page_details ); 
 ?>
