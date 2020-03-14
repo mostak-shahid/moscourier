@@ -20,7 +20,7 @@ else $page_id = get_the_ID();
 </head>
 <body <?php body_class(); ?>>
 	<input id="loader-status" type="hidden" value="<?php echo $moscourier_options['misc-page-loader'] ?>">
-<?php if ($moscourier_options['misc-page-loader']) : ?>
+<?php if (@$moscourier_options['misc-page-loader']) : ?>
     <div class="se-pre-con">
     <?php if ($moscourier_options['misc-page-loader-image']['url']) : ?>
         <img class="img-responsive animation <?php echo $moscourier_options['misc-page-loader-image-animation'] ?>" src="<?php echo do_shortcode( $moscourier_options['misc-page-loader-image']['url'] ); ?>">
@@ -43,9 +43,9 @@ else $page_id = get_the_ID();
 		</div>
 	</div> -->
 	<?php 
-	$header_class=$moscourier_options['sections-header-class']; 
-	$title_class=$moscourier_options['sections-title-class']; 
-	$breadcrumbs_class=$moscourier_options['sections-breadcrumbs-class']; 
+	$header_class=@$moscourier_options['sections-header-class']; 
+	$title_class=@$moscourier_options['sections-title-class']; 
+	$breadcrumbs_class=@$moscourier_options['sections-breadcrumbs-class']; 
 	?>
 	<header id="main-header" class="<?php if(@$moscourier_options['sections-header-background-type'] == 1) echo @$moscourier_options['sections-header-background'] . ' ';?><?php if(@$moscourier_options['sections-header-color-type'] == 1) echo @$moscourier_options['sections-header-color'];?> <?php echo $header_class?>">
 		<div class="content-wrap">
@@ -77,7 +77,7 @@ else $page_id = get_the_ID();
 							<?php echo bloginfo( 'name' ); ?>
 						<?php endif; ?>
 						</span>
-						<?php if($moscourier_options['logo']['id']) : ?>
+						<?php if(@$moscourier_options['logo']['id']) : ?>
 							<span class="d-none d-md-inline-block">
 								<img class="img-responsive img-fluid" src="<?php echo $moscourier_options['logo']['url']?>" width="<?php echo $moscourier_options['logo']['width']?>" height="<?php echo $moscourier_options['logo']['height']?>" alt="<?php echo bloginfo( 'name' ); ?> - Logo">
 							</span>

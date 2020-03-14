@@ -3,7 +3,7 @@ global $moscourier_options;
 if (is_home()) $page_id = get_option( 'page_for_posts' );
 else $page_id = get_the_ID();
 
-$from_theme_option = $moscourier_options['archive-page-sections'];
+$from_theme_option = @$moscourier_options['archive-page-sections'];
 $from_page_option = get_post_meta( $page_id, '_moscourier_page_section_layout', true );
 $sections = (@$from_page_option['Enabled'])?$from_page_option['Enabled']:$from_theme_option['Enabled'];
 ?><?php get_header() ?>

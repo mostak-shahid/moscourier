@@ -43,8 +43,8 @@ function home_url_func( $atts = array(), $content = '' ) {
 add_shortcode( 'home-url', 'home_url_func' );
 function site_identity_func( $atts = array(), $content = null ) {
 	global $moscourier_options;
-	$logo_url = ($moscourier_options['logo']['url']) ? $moscourier_options['logo']['url'] : get_template_directory_uri(). '/images/logo.png';
-	$logo_option = $moscourier_options['logo-option'];
+	$logo_url = (@$moscourier_options['logo']['url']) ? $moscourier_options['logo']['url'] : get_template_directory_uri(). '/images/logo.png';
+	$logo_option = @$moscourier_options['logo-option'];
 	$html = '';
 	$atts = shortcode_atts( array(
 		'class' => '',

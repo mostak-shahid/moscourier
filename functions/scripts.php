@@ -62,7 +62,7 @@ function moscourier_enqueue_scripts() {
 		
 	wp_register_script('main.min', get_template_directory_uri() . '/js/main.js', 'jquery');
 	wp_enqueue_script( 'main.min' );
-	if ($moscourier_options['basic-styling-stylesheet']) {
+	if (@$moscourier_options['basic-styling-stylesheet']) {
 		wp_register_style( $moscourier_options['basic-styling-stylesheet'], get_template_directory_uri() .  '/css/'.$moscourier_options['basic-styling-stylesheet'].'.css', array('main.min'));
 		wp_enqueue_style( $moscourier_options['basic-styling-stylesheet'] );		
 	}

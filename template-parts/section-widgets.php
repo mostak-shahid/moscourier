@@ -1,9 +1,9 @@
 <?php 
 global $moscourier_options;
-$class = $moscourier_options['sections-widgets-class'];
-$title = $moscourier_options['sections-widgets-title'];
-$content = $moscourier_options['sections-widgets-content'];
-$widget_layout = $moscourier_options['sections-widgets-layout'];
+$class = @$moscourier_options['sections-widgets-class'];
+$title = @$moscourier_options['sections-widgets-title'];
+$content = @$moscourier_options['sections-widgets-content'];
+$widget_layout = @$moscourier_options['sections-widgets-layout'];
 if($widget_layout == '3') { $colsize = 4; }
 elseif($widget_layout == '4') { $colsize = 3; }
 elseif($widget_layout == '2') { $colsize = 6; }
