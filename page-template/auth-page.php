@@ -1,4 +1,4 @@
-<?php /*Template Name: Gallery Page Template*/ ?>
+<?php /*Template Name: Authentication Page Template*/ ?>
 <?php 
 global $moscourier_options;
 $from_theme_option = $moscourier_options['general-page-sections'];
