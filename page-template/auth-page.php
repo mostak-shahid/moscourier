@@ -15,18 +15,17 @@ do_action( 'action_avobe_content', $page_details );
 		<div class="container">
 			<div class="auth-wrapper">	
 				<div class="row">
-					<div class="col-lg-6">
+					<div class="col-lg-6 left-part">
 						<div class="text-wrapper">
 							<div class="welcome">Welcome to</div>
 							<div class="company-name"><?php echo get_bloginfo('name'); ?></div>							
-							
 						</div>
 						<?php 
-						$atts = 'class="img-wrapper"';
+						$atts = 'class="img-wrapper text-center"';
 						echo do_shortcode("[feature-image wrapper_element='div' wrapper_atts='".$atts."' height='' width='']");
 						?>
 					</div>
-					<div class="col-lg-6">
+					<div class="col-lg-6 right-part">
 						<?php if ( have_posts() ) :?>
 							<?php while ( have_posts() ) : the_post(); ?>
 								<?php get_template_part( 'content', 'page' ) ?>
