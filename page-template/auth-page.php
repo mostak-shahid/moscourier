@@ -25,7 +25,7 @@ do_action( 'action_avobe_content', $page_details );
 						echo do_shortcode("[feature-image wrapper_element='div' wrapper_atts='".$atts."' height='' width='']");
 						?>
 					</div>
-					<div class="col-lg-6 right-part">
+					<div class="col-lg-6 right-part align-self-center">
 						<?php if ( have_posts() ) :?>
 							<?php while ( have_posts() ) : the_post(); ?>
 								<?php get_template_part( 'content', 'page' ) ?>
