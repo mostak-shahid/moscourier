@@ -37,22 +37,24 @@ add_filter('wpcf7_form_elements', function($content) {
     $content = preg_replace('/<(span).*?class="\s*(?:.*\s)?wpcf7-form-control-wrap(?:\s[^"]+)?\s*"[^\>]*>(.*)<\/\1>/i', '\2', $content);
     return $content;
 });
-function make_tml_forms_bootstrap_compatible() {
-    foreach ( tml_get_forms() as $form ) {
-        foreach ( tml_get_form_fields( $form ) as $field ) {
-            if ( 'hidden' == $field->get_type() ) {
-                continue;
-            }
+if ( is_plugin_active( 'theme-my-login/theme-my-login.php' ) ) {
+    function make_tml_forms_bootstrap_compatible() {
+        foreach ( tml_get_forms() as $form ) {
+            foreach ( tml_get_form_fields( $form ) as $field ) {
+                if ( 'hidden' == $field->get_type() ) {
+                    continue;
+                }
 
-            $field->render_args['before'] = '<div class="form-group">';
-            $field->render_args['after'] = '</div>';
-            if ('submit' == $field->get_type()) {
-                $field->add_attribute( 'class', 'btn btn-success' );
+                $field->render_args['before'] = '<div class="form-group">';
+                $field->render_args['after'] = '</div>';
+                if ('submit' == $field->get_type()) {
+                    $field->add_attribute( 'class', 'btn btn-success' );
+                }
+                elseif ( 'checkbox' != $field->get_type() ) {
+                    $field->add_attribute( 'class', 'form-control' );
+                } 
             }
-            elseif ( 'checkbox' != $field->get_type() ) {
-                $field->add_attribute( 'class', 'form-control' );
-            } 
         }
     }
+    add_action( 'init', 'make_tml_forms_bootstrap_compatible' );
 }
-add_action( 'init', 'make_tml_forms_bootstrap_compatible' );
