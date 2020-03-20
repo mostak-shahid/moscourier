@@ -46,11 +46,12 @@ function make_tml_forms_bootstrap_compatible() {
 
             $field->render_args['before'] = '<div class="form-group">';
             $field->render_args['after'] = '</div>';
-            if ( 'checkbox' != $field->get_type() ) {
-                $field->add_attribute( 'class', 'form-control' );
-            } elseif ('submit' == $field->get_type()) {
+            if ('submit' == $field->get_type()) {
                 $field->add_attribute( 'class', 'btn btn-success' );
             }
+            elseif ( 'checkbox' != $field->get_type() ) {
+                $field->add_attribute( 'class', 'form-control' );
+            } 
         }
     }
 }
