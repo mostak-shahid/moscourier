@@ -16,7 +16,7 @@ add_action( 'vc_before_init', 'your_name_integrateWithVC' );
 function your_name_integrateWithVC() {
 	vc_map( array(
 		"name" => __( "Bar tag test", "my-text-domain" ),
-		"base" => "bartag",
+		"base" => 'bartag',
 		"class" => "",
 		"category" => __( "Content", "my-text-domain"),
 		// 'admin_enqueue_js' => array(get_template_directory_uri().'/vc_extend/bartag.js'),
@@ -49,11 +49,109 @@ function your_name_integrateWithVC() {
 				"param_name" => "content", // Important: Only one textarea_html param per content element allowed and it should have "content" as a "param_name"
 				"value" => __( "<p>I am test text block. Click edit button to change this text.</p>", "my-text-domain" ),
 				"description" => __( "Enter your content.", "my-text-domain" )
-			)
+			),
+            // Design Options
+            array(
+	            'type' => 'css_editor',
+	            'heading' => __( 'Css' ),
+	            'param_name' => 'css',
+	            'group' => __( 'Design Options' ),
+            )
 		)
 	));
 }
 */
+function mos_textbox_func( $atts = array(), $content = '' ) {
+	$css_class = $html ='';
+	$atts = shortcode_atts( array(
+		'image' => '',
+		'title' => '',
+		'title-tag' => 'h3',
+		'class-name' => '',
+		'css' => '',
+	), $atts, 'mos-textbox' );	
+	if (@$atts['css']){
+		$data = explode('{', $atts['css']);	
+		$css_class .= ' '.str_replace(".", "", $data[0]);
+	}
+	if (@$atts['class-name']){
+		$css_class .= ' '.$atts['class-name'];
+	}
+	$html .= '<div class="mos-textbox-wrapper'.$css_class.'">';
+		if(@$atts['image']) $html .= '<div class="image-wrapper"><img class="img-fluid img-mos-text-box" src="'.wp_get_attachment_url($atts['image']).'"></div>';
+		if(@$atts['title']) $html .= '<div class="title-wrapper"><'.$atts['title-tag'].'>'.$atts['title'].'</'.$atts['title-tag'].'></div>';
+		$html .= '<div class="content-wrapper">'.$content.'</div>';
+	$html .= '</div>';
+	return $html;
+}
+add_shortcode( 'mos-textbox', 'mos_textbox_func' );
+add_action( 'vc_before_init', 'mosTextBoxVC' );
+function mosTextBoxVC() {
+	vc_map( array(
+		"name" => __( "Mos textbox", "my-text-domain" ),
+		"base" => 'mos-textbox',
+		"class" => "",
+		"category" => __( "Content", "my-text-domain"),
+		// 'admin_enqueue_js' => array(get_template_directory_uri().'/vc_extend/bartag.js'),
+		// 'admin_enqueue_css' => array(get_template_directory_uri().'/vc_extend/bartag.css'),
+		'icon'     => get_template_directory_uri() . '/images/mos-vc.png',
+				
+		"params" => array(
+			array(
+				"type" => "attach_image",							
+				"heading" => __( "Image", "my-text-domain" ),
+				"param_name" => "image"
+			),
+			array(
+				"type" => "textarea",			
+				"edit_field_class" => "vc_col-xs-6",				
+				"heading" => __( "Title", "my-text-domain" ),
+				"param_name" => "title",				
+				"admin_label" => true
+			),
+			array(
+				"type" => "dropdown",
+				"edit_field_class" => "vc_col-xs-6",
+				"heading" => __( "Title HTML Tag", "my-text-domain" ),
+				"param_name" => "title-tag",	
+				"value" => array( 
+					'H1' => 'h1', 
+					'H2' => 'h2', 
+					'H3' => 'h3', 
+					'H4' => 'h4',
+					'H5' => 'h5',
+					'H6' => 'h6',
+				),
+				"std" => 'h3',
+				// "value" => __( "Default param value", "my-text-domain" ),
+				// "description" => __( "Description for foo param.", "my-text-domain" )
+			),
+			array(
+				"type" => "textarea_html",
+				"holder" => "div",
+				"class" => "",
+				"heading" => __( "Content", "my-text-domain" ),
+				"param_name" => "content", // Important: Only one textarea_html param per content element allowed and it should have "content" as a "param_name"
+				// "value" => __( "<p>I am test text block. Click edit button to change this text.</p>", "my-text-domain" ),
+				"description" => __( "Enter your content.", "my-text-domain" )
+			), 
+			array(
+				"type" => "textfield",							
+				"heading" => __( "Extra class name", "my-text-domain" ),
+				"param_name" => "class-name",
+				//"value" => __( "Default param value", "my-text-domain" ),
+				"description" => __( "If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.", "my-text-domain" )
+			),
+            // Design Options
+            array(
+	            'type' => 'css_editor',
+	            'heading' => __( 'Css' ),
+	            'param_name' => 'css',
+	            'group' => __( 'Design Options' ),
+            )
+		)
+	));
+}
 function mos_map_func( $atts = array(), $content = '' ) {
 	$html = '';
 	$atts = shortcode_atts( array(
@@ -96,19 +194,19 @@ function mos_counter_func( $atts = array(), $content = '' ) {
 		'link' => '',
 	), $atts, 'mos-counter' );	
 	$html .= '<div class="card text-center h-100 border-0 rounded-0 bg-secondary position-relative mos-counter-unit">';
-	if ($atts['image']){
+	if (@$atts['image']){
 		$html .= '<img src="'.wp_get_attachment_url( $atts['image'] ).'" class="card-img-top rounded-0" alt="'.$atts['text'].'">';
 	}
 		$html .= '<div class="card-body">';
-		if ($atts['number']){
+		if (@$atts['number']){
 			$html .= '<h5 class="card-title"><span class="counter">'.$atts['number'].'</span>'.$atts['icon'].'</h5>';
 		}
-		if ($atts['text']){
+		if (@$atts['text']){
 			$html .= '<div class="card-text">'.$atts['text'].'</div>';
 		}
 		$html .= '</div>';
 
-	if ($atts['link']){
+	if (@$atts['link']){
 		$link = $atts['link'];
 		if (is_array(vc_build_link($link))) $link = vc_build_link($atts['link'])["url"];
 		$html .= '<a class="hidden-link" href="'.$link.'">Read More</a>';
@@ -185,7 +283,7 @@ function dropdown_multi_settings_field( $param, $value ) {
                     $param_value_arr = $value;
                 }
 
-                if ($value!=='' && in_array($val, $param_value_arr)) {
+                if (@$value!=='' && in_array($val, $param_value_arr)) {
                     $selected = ' selected="selected"';
                 }
                 $param_line .= '<option class="'.$val.'" value="'.$val.'"'.$selected.'>'.$text_val.'</option>';
