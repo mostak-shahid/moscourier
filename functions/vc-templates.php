@@ -78,7 +78,7 @@ function mos_textbox_func( $atts = array(), $content = '' ) {
 		$css_class .= ' '.$atts['class-name'];
 	}
 	$html .= '<div class="mos-textbox-wrapper'.$css_class.'">';
-		if(@$atts['image']) $html .= '<div class="image-wrapper"><img class="img-fluid img-mos-text-box" src="'.wp_get_attachment_url($atts['image']).'"></div>';
+		if(@$atts['image']) $html .= '<div class="image-wrapper"><img class="img-fluid img-mos-text-box w-100" src="'.wp_get_attachment_url($atts['image']).'"></div>';
 		if(@$atts['title']) $html .= '<div class="title-wrapper"><'.$atts['title-tag'].'>'.$atts['title'].'</'.$atts['title-tag'].'></div>';
 		$html .= '<div class="content-wrapper">'.$content.'</div>';
 	$html .= '</div>';
