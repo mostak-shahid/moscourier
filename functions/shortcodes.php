@@ -39,6 +39,7 @@ function registration_form_func( $atts = array(), $content = '' ) {
 		'login_url' => '',
 		'lostpass_url' => '',
 	), $atts, 'registration-form' );
+
 	$html .= '<div class="mos mos-login">
 		<form action="" method="POST" class="needs-validation" novalidate>
 			<div class="form-row">
@@ -86,6 +87,9 @@ function registration_form_func( $atts = array(), $content = '' ) {
 			</div>
 			<button type="submit" class="btn btn-primary">Register</button>
 		</form>
+		<p id="nav">
+			<a href="#">Log in</a> | <a href="#">Lost your password?</a>
+		</p>
 	</div>';
 	return $html;
 }
