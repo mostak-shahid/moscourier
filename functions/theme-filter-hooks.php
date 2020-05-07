@@ -58,3 +58,45 @@ if ( is_plugin_active( 'theme-my-login/theme-my-login.php' ) ) {
     }
     add_action( 'init', 'make_tml_forms_bootstrap_compatible' );
 }
+
+
+add_action( 'init', 'register_form_submission_func' );
+function register_form_submission_func(){
+    if ($_SERVER['REQUEST_METHOD'] == "POST") {
+        /*foreach ($_POST as $field => $value) {
+            echo "$"."_POST['"."$field"."']"." == '$value'<br>";
+        }
+        die();*/
+        if( isset( $_POST['login_user_form_field'] ) && wp_verify_nonce( $_POST['login_user_form_field'], 'login_user_form') ) {
+            $result = wp_signon();
+
+            if(is_wp_error($result))
+            wp_die('Login failed. Wrong password or user name?');
+
+            // redirect back to the requested page if login was successful    
+            header('Location: ' . $_POST['redirect_to']);
+            exit;
+        }
+        if( isset( $_POST['register_user_form_field'] ) && wp_verify_nonce( $_POST['register_user_form_field'], 'register_user_form') ) {
+            $user_email = sanitize_text_field( $_POST['email'] );
+            $brand_name = sanitize_text_field( $_POST['brand_name'] );
+            $login_url = sanitize_text_field( $_POST['login-url'] );
+            $password = $_POST['password'];
+            $user_id = username_exists( $user_email );           
+            if ( ! $user_id && false == email_exists( $user_email ) ) {
+                // $random_password = wp_generate_password( $length = 12, $include_standard_special_chars = false );
+                // $user_id = wp_create_user( $user_name, $random_password, $user_email );
+                $user_id = wp_create_user( $user_email, $password, $user_email );
+                update_user_meta( $user_id, 'brand_name', $brand_name );
+                update_user_meta( $user_id, 'phone', $phone );
+                update_user_meta( $user_id, 'user_role', 'Regular' );
+                update_user_meta( $user_id, 'activation', 'Deactive' );
+                $u = new WP_User( $user_id );
+                $u->remove_role( 'subscriber' );
+                $u->add_role( 'merchant' );         
+                wp_redirect( $login_url );
+                exit;
+            }
+        }
+    }
+}

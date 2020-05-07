@@ -61,6 +61,179 @@ function your_name_integrateWithVC() {
 	));
 }
 */
+function login_form_func( $atts = array(), $content = '' ) {
+	$html = '';
+	$atts = shortcode_atts( array(
+		'registration_url' => '',
+		'lostpass_url' => '',
+	), $atts, 'login-form' );
+	$registration_url = $atts['registration_url'];
+	if ($registration_url){
+		if (is_array(vc_build_link($registration_url))) $output_registration_url = vc_build_link($atts['registration_url'])["url"];
+		else $output_registration_url = wp_registration_url();
+	} else $output_registration_url = wp_registration_url();
+	$lostpass_url = $atts['lostpass_url'];
+	if ($lostpass_url){
+		if (is_array(vc_build_link($lostpass_url))) $output_lostpass_url = vc_build_link($atts['lostpass_url'])["url"];
+		else $output_lostpass_url = wp_login_url().'?action=lostpassword';
+	} else $output_lostpass_url = wp_login_url().'?action=lostpassword';
+	$html .= '<div class="mos mos-login">
+		<form action="" method="POST" class="needs-validation" novalidate>'.wp_nonce_field( 'login_user_form', 'login_user_form_field' ).'
+			<div class="form-group">
+				<label>Email Address</label>
+				<input type="email" class="form-control" name="log" placeholder="Email" required>
+				<div class="valid-feedback">Valid.</div>
+				<div class="invalid-feedback">Please fill out this field.</div>
+			</div>
+			<div class="form-group">
+				<label>Password</label>
+				<input type="password" class="form-control" name="pwd" placeholder="Password" required>
+				<div class="valid-feedback">Valid.</div>
+				<div class="invalid-feedback">Please fill out this field.</div>
+			</div>
+			<div class="form-group form-check">
+				<label class="form-check-label">
+					<input class="form-check-input" type="checkbox" name="rememberme"> Remember Me
+				</label>
+			</div>
+			<button name="wp-submit" type="submit" class="btn btn-primary" value="Log In">Login</button>
+			<input type="hidden" name="redirect_to" value="'.home_url().'/admin/">
+			<input type="hidden" name="testcookie" value="1">
+		</form>
+		<p id="nav">
+			<a href="'.$output_registration_url.'">Register</a> | <a href="'.$output_lostpass_url.'">Lost your password?</a>
+		</p>
+	</div>';
+	return $html;
+}
+add_shortcode( 'login-form', 'login_form_func' );
+
+add_action( 'vc_before_init', 'loginFormVC' );
+function loginFormVC() {
+	vc_map( array(
+		"name" => __( "Login Form", "my-text-domain" ),
+		"base" => 'login-form',
+		"class" => "",
+		"category" => __( "Content", "my-text-domain"),
+		// 'admin_enqueue_js' => array(get_template_directory_uri().'/vc_extend/bartag.js'),
+		// 'admin_enqueue_css' => array(get_template_directory_uri().'/vc_extend/bartag.css'),
+		'icon'     => get_template_directory_uri() . '/images/mos-vc.png',
+				
+		"params" => array(
+			array(
+				"type" => "vc_link",
+				"heading" => __( "Registration URL", "my-text-domain" ),
+				"param_name" => "registration_url",
+				"value" => __( "", "my-text-domain" )
+			),
+			array(
+				"type" => "vc_link",
+				"heading" => __( "Lost password URL", "my-text-domain" ),
+				"param_name" => "lostpass_url",
+				"value" => __( "", "my-text-domain" )
+			),
+		)
+	));
+}
+function registration_form_func( $atts = array(), $content = '' ) {
+	$html = '';
+	$atts = shortcode_atts( array(
+		'login_url' => '',
+		'lostpass_url' => '',
+	), $atts, 'registration-form' );
+	$login_url = $atts['login_url'];
+	if ($login_url){
+		if (is_array(vc_build_link($login_url))) $output_login_url = vc_build_link($atts['login_url'])["url"];
+		else $output_login_url = wp_login_url();
+	} else $output_login_url = wp_login_url();
+	$lostpass_url = $atts['lostpass_url'];
+	if ($lostpass_url){
+		if (is_array(vc_build_link($lostpass_url))) $output_lostpass_url = vc_build_link($atts['lostpass_url'])["url"];
+		else $output_lostpass_url = wp_login_url().'?action=lostpassword';
+	} else $output_lostpass_url = wp_login_url().'?action=lostpassword';
+	$html .= '<div class="mos mos-login">
+		<form action="" method="POST" class="needs-validation" novalidate>'.wp_nonce_field( 'register_user_form', 'register_user_form_field' ).'
+			<input type="hidden" name="login-url" value="'.$output_login_url.'">
+			<div class="form-row">
+				<div class="col-lg-6">										
+					<div class="form-group">
+						<label for="brand_name">Brand Name</label>
+						<input type="text" class="form-control" name="brand_name" placeholder="Brand Name" required>
+						<div class="valid-feedback">Valid.</div>
+						<div class="invalid-feedback">Please fill out this field.</div>
+					</div>	
+				</div>
+				<div class="col-lg-6">		
+					<div class="form-group">
+						<label for="phone">Contact No.</label>
+						<input type="text" class="form-control mb-2" name="phone" placeholder="Phone" required>
+						<div class="valid-feedback">Valid.</div>
+						<div class="invalid-feedback">Please fill out this field.</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="col-lg-6">
+					<div class="form-group">
+						<label for="email">Email</label>
+						<input type="email" class="form-control" name="email" placeholder="Email" required>
+						<div class="valid-feedback">Valid.</div>
+						<div class="invalid-feedback">Please fill out this field.</div>
+					</div>								
+				</div>
+				<div class="col-lg-6">										
+					<div class="form-group">
+						<label for="password">Password</label>
+						<input type="password" class="form-control" name="password" placeholder="Password" required>
+						<div class="valid-feedback">Valid.</div>
+						<div class="invalid-feedback">Please fill out this field.</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group form-check">
+				<label class="form-check-label">
+					<input class="form-check-input" type="checkbox" name="agree" required> I agree with the terms &amp; conditions.
+					<div class="valid-feedback">Valid.</div>
+					<div class="invalid-feedback">Check this checkbox to continue.</div>
+				</label>
+			</div>
+			<button type="submit" class="btn btn-primary">Register</button>
+		</form>
+		<p id="nav">
+			<a href="'.$output_login_url.'">Log in</a> | <a href="'.$output_lostpass_url.'">Lost your password?</a>
+		</p>
+	</div>';
+	return $html;
+}
+add_shortcode( 'registration-form', 'registration_form_func' );
+
+add_action( 'vc_before_init', 'registrationFormVC' );
+function registrationFormVC() {
+	vc_map( array(
+		"name" => __( "Register Form", "my-text-domain" ),
+		"base" => 'registration-form',
+		"class" => "",
+		"category" => __( "Content", "my-text-domain"),
+		// 'admin_enqueue_js' => array(get_template_directory_uri().'/vc_extend/bartag.js'),
+		// 'admin_enqueue_css' => array(get_template_directory_uri().'/vc_extend/bartag.css'),
+		'icon'     => get_template_directory_uri() . '/images/mos-vc.png',
+				
+		"params" => array(
+			array(
+				"type" => "vc_link",
+				"heading" => __( "Login URL", "my-text-domain" ),
+				"param_name" => "login_url",
+				"value" => __( "", "my-text-domain" )
+			),
+			array(
+				"type" => "vc_link",
+				"heading" => __( "Lost password URL", "my-text-domain" ),
+				"param_name" => "lostpass_url",
+				"value" => __( "", "my-text-domain" )
+			),
+		)
+	));
+}
 function mos_textbox_func( $atts = array(), $content = '' ) {
 	$css_class = $html ='';
 	$atts = shortcode_atts( array(
