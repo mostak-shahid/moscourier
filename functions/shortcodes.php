@@ -39,43 +39,54 @@ function registration_form_func( $atts = array(), $content = '' ) {
 		'login_url' => '',
 		'lostpass_url' => '',
 	), $atts, 'registration-form' );
-	$html .= '<form action="" method="POST" class="needs-validation" novalidate>
-									
-		<div class="form-group">
-			<label for="brand_name">Brand Name</label>
-			<input type="text" class="form-control" name="brand_name" id="brand_name" placeholder="Brand Name" required>
-			<div class="valid-feedback">Valid.</div>
-			<div class="invalid-feedback">Please fill out this field.</div>
-		</div>	
-
-		<div class="form-group">
-			<label for="phone">Contact No.</label>
-			<input type="text" class="form-control mb-2" name="phone" id="phone" placeholder="Phone" required>
-			<div class="valid-feedback">Valid.</div>
-			<div class="invalid-feedback">Please fill out this field.</div>
-		</div>
-		<div class="form-group">
-			<label for="email">Email</label>
-			<input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
-			<div class="valid-feedback">Valid.</div>
-			<div class="invalid-feedback">Please fill out this field.</div>
-		</div>									
-		<div class="form-group">
-			<label for="password">Password</label>
-			<input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
-			<div class="valid-feedback">Valid.</div>
-			<div class="invalid-feedback">Please fill out this field.</div>
-		</div>
-
-		<div class="form-group form-check">
-			<label class="form-check-label">
-				<input class="form-check-input" type="checkbox" name="agree" required> I agree with the terms &amp; conditions.
-				<div class="valid-feedback">Valid.</div>
-				<div class="invalid-feedback">Check this checkbox to continue.</div>
-			</label>
-		</div>
-		<button type="submit" class="btn btn-primary">Register</button>
-	</form>';
+	$html .= '<div class="mos mos-login">
+		<form action="" method="POST" class="needs-validation" novalidate>
+			<div class="form-row">
+				<div class="col-lg-6">										
+					<div class="form-group">
+						<label for="brand_name">Brand Name</label>
+						<input type="text" class="form-control" name="brand_name" placeholder="Brand Name" required>
+						<div class="valid-feedback">Valid.</div>
+						<div class="invalid-feedback">Please fill out this field.</div>
+					</div>	
+				</div>
+				<div class="col-lg-6">		
+					<div class="form-group">
+						<label for="phone">Contact No.</label>
+						<input type="text" class="form-control mb-2" name="phone" placeholder="Phone" required>
+						<div class="valid-feedback">Valid.</div>
+						<div class="invalid-feedback">Please fill out this field.</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="col-lg-6">
+					<div class="form-group">
+						<label for="email">Email</label>
+						<input type="email" class="form-control" name="email" placeholder="Email" required>
+						<div class="valid-feedback">Valid.</div>
+						<div class="invalid-feedback">Please fill out this field.</div>
+					</div>								
+				</div>
+				<div class="col-lg-6">										
+					<div class="form-group">
+						<label for="password">Password</label>
+						<input type="password" class="form-control" name="password" placeholder="Password" required>
+						<div class="valid-feedback">Valid.</div>
+						<div class="invalid-feedback">Please fill out this field.</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group form-check">
+				<label class="form-check-label">
+					<input class="form-check-input" type="checkbox" name="agree" required> I agree with the terms &amp; conditions.
+					<div class="valid-feedback">Valid.</div>
+					<div class="invalid-feedback">Check this checkbox to continue.</div>
+				</label>
+			</div>
+			<button type="submit" class="btn btn-primary">Register</button>
+		</form>
+	</div>';
 	return $html;
 }
 add_shortcode( 'registration-form', 'registration_form_func' );
