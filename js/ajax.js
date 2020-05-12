@@ -1,4 +1,5 @@
-jQuery(document).ready(function($){	
+jQuery(document).ready(function($){
+
 	$('.track-form').submit(function(e){
 		e.preventDefault();
 		var form_data = $(this).serialize();
