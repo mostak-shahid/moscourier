@@ -68,6 +68,8 @@ function register_form_submission_func(){
         }
         die();*/
         if( isset( $_POST['login_user_form_field'] ) && wp_verify_nonce( $_POST['login_user_form_field'], 'login_user_form') ) {
+            var_dump($_POST);
+            die();
 
             $creds = array(
                 'user_login'    => $_POST['log'],
