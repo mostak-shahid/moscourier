@@ -60,7 +60,7 @@ if ( is_plugin_active( 'theme-my-login/theme-my-login.php' ) ) {
 }
 
 
-add_action( 'init', 'register_form_submission_func' );
+// add_action( 'init', 'register_form_submission_func' );
 function register_form_submission_func(){
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
         /*foreach ($_POST as $field => $value) {
@@ -68,8 +68,8 @@ function register_form_submission_func(){
         }
         die();*/
         if( isset( $_POST['login_user_form_field'] ) && wp_verify_nonce( $_POST['login_user_form_field'], 'login_user_form') ) {
-            var_dump($_POST);
-            die();
+            /*var_dump($_POST);
+            die();*/
 
             $creds = array(
                 'user_login'    => $_POST['log'],
