@@ -78,6 +78,7 @@ function register_form_submission_func(){
 
             if(is_wp_error($result)) {
                 var_dump(is_wp_error($result));
+                echo $user->get_error_message();
                 wp_die('Login failed. Wrong password or user name?');
             }
             // redirect back to the requested page if login was successful    
