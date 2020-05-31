@@ -59,8 +59,7 @@ if ( is_plugin_active( 'theme-my-login/theme-my-login.php' ) ) {
     add_action( 'init', 'make_tml_forms_bootstrap_compatible' );
 }
 
-
-// add_action( 'init', 'register_form_submission_func' );
+add_action( 'after_setup_theme', 'register_form_submission_func' );
 function register_form_submission_func(){
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
         /*foreach ($_POST as $field => $value) {
@@ -79,8 +78,8 @@ function register_form_submission_func(){
             $result = wp_signon( $creds, false );
 
             if(is_wp_error($result)) {
-                var_dump(is_wp_error($result));
-                echo $user->get_error_message();
+                // var_dump(is_wp_error($result));
+                // echo $user->get_error_message();
                 wp_die('Login failed. Wrong password or user name?');
             }
             // redirect back to the requested page if login was successful    
