@@ -68,10 +68,16 @@ function register_form_submission_func(){
         }
         die();*/
         if( isset( $_POST['login_user_form_field'] ) && wp_verify_nonce( $_POST['login_user_form_field'], 'login_user_form') ) {
-            $result = wp_signon();
+            
+            $creds = array(
+                'user_login'    => $_POST['log'],
+                'user_password' => $_POST['pwd'],
+                'remember'      => true
+            );
+            $result = wp_signon( $creds, false );
 
-            /*if(is_wp_error($result))
-            wp_die('Login failed. Wrong password or user name?');*/
+            if(is_wp_error($result))
+            wp_die('Login failed. Wrong password or user name?');
 
             // redirect back to the requested page if login was successful    
             header('Location: ' . $_POST['redirect_to']);
