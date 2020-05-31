@@ -13,7 +13,15 @@
                 'user_password' => $_POST['pwd'],
                 'remember'      => true
             );
-            $result = wp_signon( $creds, false );
+            $user = wp_signon( $creds, false );
+
+			$userID = $user->ID;
+
+			wp_set_current_user( $userID, $user_login );
+			wp_set_auth_cookie( $userID, true, false );
+			do_action( 'wp_login', $user_login );
+			
+            /*$result = wp_signon( $creds, false );
 
             if(is_wp_error($result)) {
                 var_dump(is_wp_error($result));
@@ -22,7 +30,7 @@
             }
             // redirect back to the requested page if login was successful    
             header('Location: ' . $_POST['redirect_to']);
-            exit;
+            exit;*/
         }
         if( isset( $_POST['register_user_form_field'] ) && wp_verify_nonce( $_POST['register_user_form_field'], 'register_user_form') ) {
             $user_email = sanitize_text_field( $_POST['email'] );
