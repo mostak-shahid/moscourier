@@ -70,8 +70,8 @@ function register_form_submission_func(){
         if( isset( $_POST['login_user_form_field'] ) && wp_verify_nonce( $_POST['login_user_form_field'], 'login_user_form') ) {
             $result = wp_signon();
 
-            if(is_wp_error($result))
-            wp_die('Login failed. Wrong password or user name?');
+            /*if(is_wp_error($result))
+            wp_die('Login failed. Wrong password or user name?');*/
 
             // redirect back to the requested page if login was successful    
             header('Location: ' . $_POST['redirect_to']);
