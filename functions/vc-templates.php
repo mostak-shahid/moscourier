@@ -154,7 +154,7 @@ function navigationVC() {
 			array(
 				"type" => "dropdown",
 				"edit_field_class" => "vc_col-xs-6",
-				"heading" => __( "Title HTML Tag", "my-text-domain" ),
+				"heading" => __( "Menu Type", "my-text-domain" ),
 				"param_name" => "menu_type",	
 				"value" => array( 
 					'Default' => '0', 
