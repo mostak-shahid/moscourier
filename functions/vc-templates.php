@@ -61,6 +61,117 @@ function your_name_integrateWithVC() {
 	));
 }
 */
+function navigation_func( $atts = array(), $content = '' ) {
+	global $moscourier_options;
+	$atts = shortcode_atts( array(
+	    'menu_name'        	=> '',
+		'nav_class'			=> '',
+	    'container'         => 'div',
+	    'container_class'   => 'collapse navbar-collapse',
+	    'menu_class'        => 'navbar-nav ml-auto',
+	    'menu_type'        => 'mos-navbar',
+	), $atts, 'navigation' );
+	$html = '';
+	if ($atts['menu_name']) :
+				$html .= '<nav class="navbar navbar-expand-md navbar-light '.$atts['nav_class'].'">';		
+					$html .= '<a class="navbar-brand" href="'.home_url().'">';
+					if($moscourier_options['logo']['id']) :
+						$html .= '<img class="img-responsive img-fluid" src="'.$moscourier_options['logo']['url'].'" width="'.$moscourier_options['logo']['width'].'" height="'.$moscourier_options['logo']['height'].'" alt="'.get_bloginfo( 'name' ).' - Logo">';
+					endif;
+					$html .= '</a>';
+					$html .= '<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" aria-controls="collapsibleNavbar" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>';
+					
+					$html .= wp_nav_menu([
+						'menu'            => $atts['menu_name'],
+						'container'       => $atts['container'],
+						'container_class' => $atts['container_class'],
+						'menu_class'      => $atts['menu_class'],
+						'depth'           => 2,
+						'fallback_cb'     => 'bs4navwalker::fallback',
+						'echo'			  => false,
+						'walker'          => ($atts['menu_type'])?new bs4navwalker():''
+					]);					
+				$html .= '</nav>';
+	endif;				
+	return $html;	
+}
+add_shortcode( 'navigation', 'navigation_func' );
+add_action( 'vc_before_init', 'navigationVC' );
+function navigationVC() {
+	vc_map( array(
+		"name" => __( "Mos Navigation", "my-text-domain" ),
+		"base" => 'navigation',
+		"class" => "",
+		"category" => __( "Content", "my-text-domain"),
+		// 'admin_enqueue_js' => array(get_template_directory_uri().'/vc_extend/bartag.js'),
+		// 'admin_enqueue_css' => array(get_template_directory_uri().'/vc_extend/bartag.css'),
+		'icon'     => get_template_directory_uri() . '/images/mos-vc.png',
+				
+		"params" => array(
+			array(
+				"type" => "textfield",
+				"holder" => "div",
+				"class" => "",				
+				"admin_label" => false,
+				"heading" => __( "Nav Name", "my-text-domain" ),
+				"param_name" => "menu_name",
+				"value" => __( "", "my-text-domain" ),
+			),
+			array(
+				"type" => "textfield",			
+				"admin_label" => false,
+				"heading" => __( "Nav Class", "my-text-domain" ),
+				"param_name" => "nav_class",
+				"value" => __( "", "my-text-domain" ),
+				"description" => __( "You can add background color class.", "my-text-domain" )
+			),
+			array(
+				"type" => "textfield",			
+				"admin_label" => false,
+				"heading" => __( "Container Element", "my-text-domain" ),
+				"param_name" => "container",
+				"value" => __( "div", "my-text-domain" ),
+				"description" => __( "You can add div, nav etc or 0.", "my-text-domain" )
+			),
+			array(
+				"type" => "textfield",			
+				"admin_label" => false,
+				"heading" => __( "Container Class", "my-text-domain" ),
+				"param_name" => "container_class",
+				"value" => __( "collapse navbar-collapse", "my-text-domain" ),
+				"description" => __( "You can add any class.", "my-text-domain" )
+			),
+			array(
+				"type" => "textfield",				
+				"admin_label" => false,
+				"heading" => __( "Menu Class", "my-text-domain" ),
+				"param_name" => "menu_class",
+				"value" => __( "collapse navbar-collapse", "my-text-domain" ),
+				"description" => __( "You can add any class.", "my-text-domain" )
+			),
+			array(
+				"type" => "dropdown",
+				"edit_field_class" => "vc_col-xs-6",
+				"heading" => __( "Title HTML Tag", "my-text-domain" ),
+				"param_name" => "menu_type",	
+				"value" => array( 
+					'Default' => '0', 
+					'Bootstrap' => '1'
+				)
+			),
+            // Design Options
+            array(
+	            'type' => 'css_editor',
+	            'heading' => __( 'Css' ),
+	            'param_name' => 'css',
+	            'group' => __( 'Design Options' ),
+            )
+		)
+	));
+}
+
 function login_form_func( $atts = array(), $content = '' ) {
 	$html = '';
 	$atts = shortcode_atts( array(

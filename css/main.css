@@ -19,10 +19,10 @@ a:visited,a:hover,a:active,a:focus{text-decoration:none}
 .pagination{-webkit-box-pack:center!important;-ms-flex-pack:center!important;justify-content:center!important;margin-bottom:20px}
 .pagination .page-numbers{color:#000000;display:inline-block;text-align:center;padding:5px;min-width:42px;line-height:30px;border:1px solid #000000;text-decoration:none}
 .pagination .page-numbers.dots{border-color:transparent}
-.navbar {padding: 0; }
-.navbar .navbar-nav .menu-item{position:relative}
-.navbar .navbar-nav .menu-item a{display:inline-block;padding:.5rem;color:#000000}
-.navbar .navbar-nav .menu-item.menu-item-has-children .drop_down_icon{float:right;cursor:pointer;line-height: 40px;}
+.navbar{padding:0;}
+.navbar.mos-navbar .navbar-nav .menu-item{position:relative}
+.navbar.mos-navbar .navbar-nav .menu-item a{display:inline-block;padding:.5rem;color:#000000}
+.navbar.mos-navbar .navbar-nav .menu-item.menu-item-has-children .drop_down_icon{float:right;cursor:pointer;line-height: 40px;}
 .sub-menu{top:100%;left:0;z-index:1000;display:none;float:left;min-width:10rem;padding:0;margin:.125rem 0 0;font-size:1rem;color:#212529;text-align:left;list-style:none;background-color:#fff;background-clip:padding-box;border:1px solid rgba(0,0,0,.15);border-radius:.25rem} 
 section,footer,#footer{position:relative}
 header{box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;}
@@ -96,8 +96,8 @@ header .vc_row[data-vc-full-width],footer .vc_row[data-vc-full-width]{overflow: 
 /* Small devices (landscape phones,less than 768px) */
 @media (max-width:767.98px){
     .sub-menu{position:relative;width:100%}
-    .navbar .navbar-nav .menu-item a{display:block}    
-    .navbar .navbar-nav .menu-item.menu-item-has-children .drop_down_icon{border:1px solid #000;width:42px;text-align:center;padding:0}
+    .navbar.mos-navbar .navbar-nav .menu-item a{display:block}    
+    .navbar.mos-navbar .navbar-nav .menu-item.menu-item-has-children .drop_down_icon{border:1px solid #000;width:42px;text-align:center;padding:0}
 }
 
 /* Extra small devices (portrait phones,less than 576px) */

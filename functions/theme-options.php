@@ -299,6 +299,15 @@
                 'title'    => __( 'Links Color', 'redux-framework-demo' ),
                 'output'   => array('a'),
             ),
+            array(
+                'id'       => 'basic-background-color',
+                'type'     => 'color',
+                'output'   => array( '.theme-bg', '.bg-theme' ),
+                'title'    => __( 'Default Background Color', 'redux-framework-demo' ),
+                'mode'     => 'background',
+                'validate' => 'color',
+                'default'  => '#f1a626',
+            ),
         )
     ) );
     //Basic Styling     

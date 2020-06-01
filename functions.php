@@ -17,6 +17,7 @@ require_once('functions/custom-comments.php');
 require_once('functions/theme-filter-hooks.php');
 require_once('functions/ajax.php');
 require_once('functions/post-types.php');
+require_once('functions/bs4navwalker.php');
 
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 if(is_plugin_active('js_composer/js_composer.php')){

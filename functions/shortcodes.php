@@ -361,36 +361,3 @@ function theme_credit_func( $atts = array(), $content = '' ) {
 	return $html = '<a href="'.$atts["url"].'" target="_blank" class="theme-credit">'.$atts["name"].'</a>';
 }
 add_shortcode( 'theme-credit', 'theme_credit_func' );
-
-function navigation_func( $atts = array(), $content = '' ) {
-	global $moscourier_options;
-	$html = '';
-				$html .= '<nav class="navbar navbar-expand-md navbar-light navbar-custom-bg">';		
-					$html .= '<a class="navbar-brand" href="'.home_url().'">';
-					if($moscourier_options['logo']['id']) :
-						$html .= '<img class="img-responsive img-fluid" src="'.$moscourier_options['logo']['url'].'" width="'.$moscourier_options['logo']['width'].'" height="'.$moscourier_options['logo']['height'].'" alt="'.get_bloginfo( 'name' ).' - Logo">';
-					endif;
-					$html .= '</a>';
-					$html .= '<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" aria-controls="collapsibleNavbar" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>';
-					
-					$html .= wp_nav_menu([
-						'menu'            => 'mainmenu',
-						'theme_location'  => 'mainmenu',
-						'container'       => 'div',
-						'container_id'    => 'collapsibleNavbar',
-						'container_class' => 'collapse navbar-collapse',
-						'menu_id'         => false,
-						'menu_class'      => 'navbar-nav ml-auto',
-						'depth'           => 2,
-						'fallback_cb'     => 'bs4navwalker::fallback',
-						'echo'			  => false
-						//'walker'          => new bs4navwalker()
-						]);
-					
-				$html .= '</nav>';
-				return $html;	
-
-}
-add_shortcode( 'navigation', 'navigation_func' );
