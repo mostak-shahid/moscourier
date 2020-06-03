@@ -2,12 +2,13 @@
 global $moscourier_options;
 $class = @$moscourier_options['sections-footer-class'];
 $page_details = array( 'id' => get_the_ID(), 'template_file' => basename( get_page_template() ));
+$footer_layout = (@get_post_meta(get_the_ID(), '_moscourier_footer_layout', true )?get_post_meta($page_id, '_moscourier_footer_layout', true ):@$moscourier_options['sections-footer-layout']);
 ?>
   <?php get_template_part( 'template-parts/section', 'widgets' ); ?>
   <footer id="footer" class="<?php if(@$moscourier_options['sections-footer-background-type'] == 1) echo @$moscourier_options['sections-footer-background'] . ' ';?><?php if(@$moscourier_options['sections-footer-color-type'] == 1) echo @$moscourier_options['sections-footer-color'];?> <?php echo $class ?>">
     <div class="content-wrap">
       <div class="container">
-      <?php if (@$moscourier_options['sections-footer-layout']) : ?>
+      <?php if ($footer_layout) : ?>
         <?php 
         $my_postid = $moscourier_options['sections-footer-layout'];//This is page id or post id
         // echo do_shortcode(get_post_field('post_content', '10670'));

@@ -46,11 +46,12 @@ else $page_id = get_the_ID();
 	$header_class=@$moscourier_options['sections-header-class']; 
 	$title_class=@$moscourier_options['sections-title-class']; 
 	$breadcrumbs_class=@$moscourier_options['sections-breadcrumbs-class']; 
+	$header_layout = (@get_post_meta($page_id, '_moscourier_header_layout', true )?get_post_meta($page_id, '_moscourier_header_layout', true ):@$moscourier_options['sections-header-layout']);
 	?>
 	<header id="main-header" class="<?php if(@$moscourier_options['sections-header-background-type'] == 1) echo @$moscourier_options['sections-header-background'] . ' ';?><?php if(@$moscourier_options['sections-header-color-type'] == 1) echo @$moscourier_options['sections-header-color'];?> <?php echo $header_class?>">
 		<div class="content-wrap">
 			<div class="container">
-			<?php if (@$moscourier_options['sections-header-layout']) : ?>
+			<?php if ($header_layout) : ?>
 				<?php 
 				$my_postid = $moscourier_options['sections-header-layout'];//This is page id or post id
 				// echo do_shortcode(get_post_field('post_content', '10670'));

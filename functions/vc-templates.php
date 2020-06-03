@@ -70,15 +70,18 @@ function navigation_func( $atts = array(), $content = '' ) {
 	    'container_class'   => 'collapse navbar-collapse',
 	    'menu_class'        => 'navbar-nav ml-auto',
 	    'menu_type'        => 'mos-navbar',
+	    'logo'        => 1,
 	), $atts, 'navigation' );
 	$html = '';
 	if ($atts['menu_name']) :
-				$html .= '<nav class="navbar navbar-expand-md navbar-light '.$atts['nav_class'].'">';		
+				$html .= '<nav class="navbar navbar-expand-md navbar-light '.$atts['nav_class'].'">';	
+				if ($atts['logo']) :
 					$html .= '<a class="navbar-brand" href="'.home_url().'">';
 					if($moscourier_options['logo']['id']) :
 						$html .= '<img class="img-responsive img-fluid" src="'.$moscourier_options['logo']['url'].'" width="'.$moscourier_options['logo']['width'].'" height="'.$moscourier_options['logo']['height'].'" alt="'.get_bloginfo( 'name' ).' - Logo">';
 					endif;
 					$html .= '</a>';
+				endif;
 					$html .= '<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" aria-controls="collapsibleNavbar" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
 					</button>';
@@ -159,6 +162,16 @@ function navigationVC() {
 				"value" => array( 
 					'Default' => '0', 
 					'Bootstrap' => '1'
+				)
+			),
+			array(
+				"type" => "dropdown",
+				"edit_field_class" => "vc_col-xs-6",
+				"heading" => __( "Enable Logo", "my-text-domain" ),
+				"param_name" => "logo",	
+				"value" => array( 
+					'Yes' => '1',
+					'No' => '0', 
 				)
 			),
             // Design Options
