@@ -24,6 +24,7 @@ function mos_get_posts($post_type = 'post'){
 $template_parts = array(
     'Enabled'  => array(
         'content' => 'Content Section',
+        'widgets' => 'Widgets Section',
     ),
     'Disabled' => array(
         'banner' => 'Home Banner',

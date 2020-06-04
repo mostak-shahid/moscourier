@@ -53,16 +53,16 @@ else $page_id = get_the_ID();
 			<div class="container">
 			<?php if ($header_layout) : ?>
 				<?php 
-				$my_postid = $moscourier_options['sections-header-layout'];//This is page id or post id
+				// $header_layout = $moscourier_options['sections-header-layout'];//This is page id or post id
 				// echo do_shortcode(get_post_field('post_content', '10670'));
-				$shortcodes_custom_css = get_post_meta( $my_postid, '_wpb_shortcodes_custom_css', true );
+				$shortcodes_custom_css = get_post_meta( $header_layout, '_wpb_shortcodes_custom_css', true );
 				if ( ! empty( $shortcodes_custom_css ) ) {
 				    $shortcodes_custom_css = strip_tags( $shortcodes_custom_css );
 				    echo '<style type="text/css" data-type="vc_shortcodes-custom-css">';
 				    echo $shortcodes_custom_css;
 				    echo '</style>';
 				}
-				$content_post = get_post($my_postid);
+				$content_post = get_post($header_layout);
 				$content = $content_post->post_content;
 				$content = apply_filters('the_content', $content);
 				$content = str_replace(']]>', ']]&gt;', $content);
