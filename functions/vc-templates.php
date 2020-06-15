@@ -191,13 +191,13 @@ function login_form_func( $atts = array(), $content = '' ) {
 	$html .= '<div class="mos mos-login">
 		<form action="" method="POST" class="needs-validation" novalidate>'.wp_nonce_field( 'login_user_form', 'login_user_form_field' ).'
 			<div class="form-group">
-				<label>Email Address</label>
+				<label class="login-form-label">Email Address</label>
 				<input type="email" class="form-control" name="log" placeholder="Email" required>
 				<div class="valid-feedback">Valid.</div>
 				<div class="invalid-feedback">Please fill out this field.</div>
 			</div>
 			<div class="form-group">
-				<label>Password</label>
+				<label class="login-form-label">Password</label>
 				<input type="password" class="form-control" name="pwd" placeholder="Password" required>
 				<div class="valid-feedback">Valid.</div>
 				<div class="invalid-feedback">Please fill out this field.</div>
