@@ -287,8 +287,8 @@ function registration_form_func( $atts = array(), $content = '' ) {
 				<div class="valid-feedback">Valid.</div>
 				<div class="invalid-feedback">Please fill out this field.</div>
 			</div>	
-			<div class="login-form-label" class="form-group">
-				<label for="phone">Contact No.</label>
+			<div class="form-group">
+				<label class="login-form-label" for="phone">Contact No.</label>
 				<input type="text" class="form-control mb-2" name="phone" placeholder="Phone" required>
 				<div class="valid-feedback">Valid.</div>
 				<div class="invalid-feedback">Please fill out this field.</div>
@@ -299,8 +299,8 @@ function registration_form_func( $atts = array(), $content = '' ) {
 				<div class="valid-feedback">Valid.</div>
 				<div class="invalid-feedback">Please fill out this field.</div>
 			</div>									
-			<div class="login-form-label" class="form-group">
-				<label for="password">Password</label>
+			<div class="form-group">
+				<label class="login-form-label" for="password">Password</label>
 				<input type="password" class="form-control" name="password" placeholder="Password" required>
 				<div class="valid-feedback">Valid.</div>
 				<div class="invalid-feedback">Please fill out this field.</div>
