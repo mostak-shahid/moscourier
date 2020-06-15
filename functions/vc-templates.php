@@ -280,50 +280,41 @@ function registration_form_func( $atts = array(), $content = '' ) {
 	$html .= '<div class="mos mos-login">
 		<form action="" method="POST" class="needs-validation" novalidate>'.wp_nonce_field( 'register_user_form', 'register_user_form_field' ).'
 			<input type="hidden" name="login-url" value="'.$output_login_url.'">
-			<div class="form-row">
-				<div class="col-lg-6">										
-					<div class="form-group">
-						<label for="brand_name">Brand Name</label>
-						<input type="text" class="form-control" name="brand_name" placeholder="Brand Name" required>
-						<div class="valid-feedback">Valid.</div>
-						<div class="invalid-feedback">Please fill out this field.</div>
-					</div>	
-				</div>
-				<div class="col-lg-6">		
-					<div class="form-group">
-						<label for="phone">Contact No.</label>
-						<input type="text" class="form-control mb-2" name="phone" placeholder="Phone" required>
-						<div class="valid-feedback">Valid.</div>
-						<div class="invalid-feedback">Please fill out this field.</div>
-					</div>
-				</div>
+									
+			<div class="form-group">
+				<label class="login-form-label" for="brand_name">Brand Name</label>
+				<input type="text" class="form-control" name="brand_name" placeholder="Brand Name" required>
+				<div class="valid-feedback">Valid.</div>
+				<div class="invalid-feedback">Please fill out this field.</div>
+			</div>	
+			<div class="login-form-label" class="form-group">
+				<label for="phone">Contact No.</label>
+				<input type="text" class="form-control mb-2" name="phone" placeholder="Phone" required>
+				<div class="valid-feedback">Valid.</div>
+				<div class="invalid-feedback">Please fill out this field.</div>
 			</div>
-			<div class="form-row">
-				<div class="col-lg-6">
-					<div class="form-group">
-						<label for="email">Email</label>
-						<input type="email" class="form-control" name="email" placeholder="Email" required>
-						<div class="valid-feedback">Valid.</div>
-						<div class="invalid-feedback">Please fill out this field.</div>
-					</div>								
-				</div>
-				<div class="col-lg-6">										
-					<div class="form-group">
-						<label for="password">Password</label>
-						<input type="password" class="form-control" name="password" placeholder="Password" required>
-						<div class="valid-feedback">Valid.</div>
-						<div class="invalid-feedback">Please fill out this field.</div>
-					</div>
-				</div>
+			<div class="form-group">
+				<label class="login-form-label" for="email">Email</label>
+				<input type="email" class="form-control" name="email" placeholder="Email" required>
+				<div class="valid-feedback">Valid.</div>
+				<div class="invalid-feedback">Please fill out this field.</div>
+			</div>									
+			<div class="login-form-label" class="form-group">
+				<label for="password">Password</label>
+				<input type="password" class="form-control" name="password" placeholder="Password" required>
+				<div class="valid-feedback">Valid.</div>
+				<div class="invalid-feedback">Please fill out this field.</div>
 			</div>
-			<div class="form-group form-check">
-				<label class="form-check-label">
-					<input class="form-check-input" type="checkbox" name="agree" required> I agree with the terms &amp; conditions.
+
+			<div class="form-group">
+				<div class="custom-control custom-checkbox mr-sm-2">
+					<input type="checkbox" class="custom-control-input" id="agree" name="agree" required>
+					<label class="custom-control-label" for="agree"> I agree with the terms &amp; conditions.</label>
 					<div class="valid-feedback">Valid.</div>
 					<div class="invalid-feedback">Check this checkbox to continue.</div>
-				</label>
+				</div>
 			</div>
-			<button type="submit" class="btn btn-primary">Register</button>
+			<button type="submit" class="btn btn-primary btn-login">Register</button>
 		</form>
 		<p id="nav">
 			<a href="'.$output_login_url.'">Log in</a> | <a href="'.$output_lostpass_url.'">Lost your password?</a>
