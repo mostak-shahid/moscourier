@@ -69,16 +69,20 @@ function navigation_func( $atts = array(), $content = '' ) {
 	    'container'         => 'div',
 	    'container_class'   => 'collapse navbar-collapse',
 	    'menu_class'        => 'navbar-nav ml-auto',
-	    'menu_type'        => 'mos-navbar',
+	    'menu_type'        => 'bootstrap',
+	    'logo'        => 'yes',
 	), $atts, 'navigation' );
 	$html = '';
 	if ($atts['menu_name']) :
-				$html .= '<nav class="navbar navbar-expand-md navbar-light '.$atts['nav_class'].'">';		
+				$html .= '<nav class="navbar navbar-expand-md navbar-light '.$atts['nav_class'].'">';	
+				if ($atts['logo'] == 'yes') :
+
 					$html .= '<a class="navbar-brand" href="'.home_url().'">';
-					if($moscourier_options['logo']['id']) :
+					if($moscourier_options['logo']['url']) :
 						$html .= '<img class="img-responsive img-fluid" src="'.$moscourier_options['logo']['url'].'" width="'.$moscourier_options['logo']['width'].'" height="'.$moscourier_options['logo']['height'].'" alt="'.get_bloginfo( 'name' ).' - Logo">';
 					endif;
 					$html .= '</a>';
+				endif;
 					$html .= '<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" aria-controls="collapsibleNavbar" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
 					</button>';
@@ -91,7 +95,7 @@ function navigation_func( $atts = array(), $content = '' ) {
 						'depth'           => 2,
 						'fallback_cb'     => 'bs4navwalker::fallback',
 						'echo'			  => false,
-						'walker'          => ($atts['menu_type'])?new bs4navwalker():''
+						'walker'          => ($atts['menu_type'] == 'bootstrap')?new bs4navwalker():'',
 					]);					
 				$html .= '</nav>';
 	endif;				
@@ -157,8 +161,18 @@ function navigationVC() {
 				"heading" => __( "Menu Type", "my-text-domain" ),
 				"param_name" => "menu_type",	
 				"value" => array( 
-					'Default' => '0', 
-					'Bootstrap' => '1'
+					'Bootstrap' => 'bootstrap',
+					'Default' => 'default', 
+				)
+			),
+			array(
+				"type" => "dropdown",
+				"edit_field_class" => "vc_col-xs-6",
+				"heading" => __( "Enable Logo", "my-text-domain" ),
+				"param_name" => "logo",	
+				"value" => array( 
+					'Yes' => 'yes',
+					'No' => 'no', 
 				)
 			),
             // Design Options
@@ -351,9 +365,16 @@ function mos_textbox_func( $atts = array(), $content = '' ) {
 		'image' => '',
 		'title' => '',
 		'title-tag' => 'h3',
+		'animation' => '',
 		'class-name' => '',
 		'css' => '',
 	), $atts, 'mos-textbox' );	
+	// var_dump($atts['animation']);
+	if (@$atts['animation']){
+		// Build the animation classes
+	    // $css_class .= $this->getCSSAnimation( $atts['animation'] );
+	    $css_class .=  ' wpb_animate_when_almost_visible wpb_'.$atts['animation'].' '.$atts['animation'];
+	}
 	if (@$atts['css']){
 		$data = explode('{', $atts['css']);	
 		$css_class .= ' '.str_replace(".", "", $data[0]);
@@ -419,6 +440,15 @@ function mosTextBoxVC() {
 				// "value" => __( "<p>I am test text block. Click edit button to change this text.</p>", "my-text-domain" ),
 				"description" => __( "Enter your content.", "my-text-domain" )
 			), 
+            array(
+                'type' => 'animation_style',
+                'heading' => __( 'CSS Animation', 'text-domain' ),
+                'param_name' => 'animation',
+                'description' => __( 'Select type of animation for element to be animated when it "enters" the browsers viewport (Note: works only in modern browsers).', 'text-domain' ),
+                'admin_label' => false,
+                'weight' => 0,
+                // 'group' => 'Custom Group',
+            ),
 			array(
 				"type" => "textfield",							
 				"heading" => __( "Extra class name", "my-text-domain" ),
@@ -476,8 +506,21 @@ function mos_counter_func( $atts = array(), $content = '' ) {
 		'icon' => '+',
 		'text' => '',
 		'link' => '',
-	), $atts, 'mos-counter' );	
-	$html .= '<div class="card text-center h-100 border-0 rounded-0 bg-secondary position-relative mos-counter-unit">';
+		'animation' => '',
+		'class-name' => '',
+		'css' => '',
+	), $atts, 'mos-counter' );
+	if (@$atts['animation']){
+	    $css_class .=  ' wpb_animate_when_almost_visible wpb_'.$atts['animation'].' '.$atts['animation'];
+	}
+	if (@$atts['css']){
+		$data = explode('{', $atts['css']);	
+		$css_class .= ' '.str_replace(".", "", $data[0]);
+	}
+	if (@$atts['class-name']){
+		$css_class .= ' '.$atts['class-name'];
+	}	
+	$html .= '<div class="card mos-counter-unit'.$css_class.'">';
 	if (@$atts['image']){
 		$html .= '<img src="'.wp_get_attachment_url( $atts['image'] ).'" class="card-img-top rounded-0" alt="'.$atts['text'].'">';
 	}
@@ -544,7 +587,30 @@ function mos_counter_vc() {
 				"class" => "mos-count-vc-link",
 				"heading" => __( "Link", "my-text-domain" ),
 				"param_name" => "link",
+			), 
+            array(
+                'type' => 'animation_style',
+                'heading' => __( 'CSS Animation', 'text-domain' ),
+                'param_name' => 'animation',
+                'description' => __( 'Select type of animation for element to be animated when it "enters" the browsers viewport (Note: works only in modern browsers).', 'text-domain' ),
+                'admin_label' => false,
+                'weight' => 0,
+                // 'group' => 'Custom Group',
+            ),
+			array(
+				"type" => "textfield",							
+				"heading" => __( "Extra class name", "my-text-domain" ),
+				"param_name" => "class-name",
+				//"value" => __( "Default param value", "my-text-domain" ),
+				"description" => __( "If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.", "my-text-domain" )
 			),
+            // Design Options
+            array(
+	            'type' => 'css_editor',
+	            'heading' => __( 'Css' ),
+	            'param_name' => 'css',
+	            'group' => __( 'Design Options' ),
+            )
 		)
 	));
 }

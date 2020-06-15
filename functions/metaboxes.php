@@ -17,6 +17,15 @@ function moscourier_metaboxes() {
         'title' => __('Page Settings', 'cmb2'),
         'object_types' => array('page', 'post'),
     )); 
+    $page_settings->add_field( array(
+        'name'             => 'Header Layout',
+        'desc'             => 'Select an option',
+        'id'               => $prefix . 'header_layout',
+        'type'             => 'select',
+        'show_option_none' => true,
+        'default'          => $moscourier_options['sections-header-layout'],
+        'options'          => mos_get_posts('layout'),
+    ));    
     $page_settings->add_field(array(
         'name'    => 'Page Row Layout',
         'id'      => $prefix . 'page_section_layout',
@@ -26,6 +35,15 @@ function moscourier_metaboxes() {
             'Enabled'  => $enabled,
             'Disabled' => $disabled, 
         ),
+    )); 
+    $page_settings->add_field( array(
+        'name'             => 'Footer Layout',
+        'desc'             => 'Select an option',
+        'id'               => $prefix . 'footer_layout',
+        'type'             => 'select',
+        'show_option_none' => true,
+        'default'          => $moscourier_options['sections-footer-layout'],
+        'options'          => mos_get_posts('layout'),
     ));    
     $banner_details = new_cmb2_box(array(
         'id' => $prefix . 'banner_details',
