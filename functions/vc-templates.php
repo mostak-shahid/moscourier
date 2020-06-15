@@ -216,11 +216,13 @@ function login_form_func( $atts = array(), $content = '' ) {
 				<div class="valid-feedback">Valid.</div>
 				<div class="invalid-feedback">Please fill out this field.</div>
 			</div>
-			<div class="custom-control custom-checkbox mr-sm-2">
-				<input name="rememberme" type="checkbox" class="custom-control-input" id="remember-me">
-				<label class="custom-control-label" for="remember-me"> Remember Me</label>
+			<div class="form-group">
+				<div class="custom-control custom-checkbox mr-sm-2">
+					<input name="rememberme" type="checkbox" class="custom-control-input" id="remember-me">
+					<label class="custom-control-label" for="remember-me"> Remember Me</label>
+				</div>
 			</div>
-			<button name="wp-submit" type="submit" class="btn btn-primary" value="Log In">Login</button>
+			<button name="wp-submit" type="submit" class="btn btn-primary btn-login" value="Log In">Login</button>
 			<input type="hidden" name="redirect_to" value="'.home_url().'/admin/">
 			<input type="hidden" name="testcookie" value="1">
 		</form>
