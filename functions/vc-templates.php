@@ -68,6 +68,7 @@ function navigation_func( $atts = array(), $content = '' ) {
 		'nav_class'			=> '',
 	    'container'         => 'div',
 	    'container_class'   => 'collapse navbar-collapse',
+	    'menu_id'        => 'collapsibleNavbar',
 	    'menu_class'        => 'navbar-nav ml-auto',
 	    'menu_type'        => 'bootstrap',
 	    'logo'        => 'yes',
@@ -83,7 +84,7 @@ function navigation_func( $atts = array(), $content = '' ) {
 					endif;
 					$html .= '</a>';
 				endif;
-					$html .= '<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" aria-controls="collapsibleNavbar" aria-expanded="false" aria-label="Toggle navigation">
+					$html .= '<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="'.$atts['menu_id'].'" aria-controls="collapsibleNavbar" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
 					</button>';
 					
@@ -91,6 +92,7 @@ function navigation_func( $atts = array(), $content = '' ) {
 						'menu'            => $atts['menu_name'],
 						'container'       => $atts['container'],
 						'container_class' => $atts['container_class'],
+						'menu_class'      => $atts['menu_id'],
 						'menu_class'      => $atts['menu_class'],
 						'depth'           => 2,
 						'fallback_cb'     => 'bs4navwalker::fallback',
@@ -153,6 +155,14 @@ function navigationVC() {
 				"heading" => __( "Menu Class", "my-text-domain" ),
 				"param_name" => "menu_class",
 				"value" => __( "collapse navbar-collapse", "my-text-domain" ),
+				"description" => __( "You can add any class.", "my-text-domain" )
+			),
+			array(
+				"type" => "textfield",				
+				"admin_label" => false,
+				"heading" => __( "Menu ID", "my-text-domain" ),
+				"param_name" => "menu_id",
+				"value" => __( "collapsibleNavbar", "my-text-domain" ),
 				"description" => __( "You can add any class.", "my-text-domain" )
 			),
 			array(
