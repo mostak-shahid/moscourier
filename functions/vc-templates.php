@@ -84,7 +84,7 @@ function navigation_func( $atts = array(), $content = '' ) {
 					endif;
 					$html .= '</a>';
 				endif;
-					$html .= '<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="'.$atts['menu_id'].'" aria-controls="collapsibleNavbar" aria-expanded="false" aria-label="Toggle navigation">
+					$html .= '<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#'.$atts['menu_id'].'" aria-controls="collapsibleNavbar" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
 					</button>';
 					
