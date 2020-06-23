@@ -68,7 +68,7 @@ function navigation_func( $atts = array(), $content = '' ) {
 		'nav_class'			=> '',
 	    'container'         => 'div',
 	    'container_class'   => 'collapse navbar-collapse',
-	    'menu_id'        => 'collapsibleNavbar',
+	    'container_id'        => 'collapsibleNavbar',
 	    'menu_class'        => 'navbar-nav ml-auto',
 	    'menu_type'        => 'bootstrap',
 	    'logo'        => 'yes',
@@ -92,7 +92,7 @@ function navigation_func( $atts = array(), $content = '' ) {
 						'menu'            => $atts['menu_name'],
 						'container'       => $atts['container'],
 						'container_class' => $atts['container_class'],
-						'menu_id'      => $atts['menu_id'],
+						'container_id'      => $atts['container_id'],
 						'menu_class'      => $atts['menu_class'],
 						'depth'           => 2,
 						'fallback_cb'     => 'bs4navwalker::fallback',
@@ -142,6 +142,14 @@ function navigationVC() {
 				"description" => __( "You can add div, nav etc or 0.", "my-text-domain" )
 			),
 			array(
+				"type" => "textfield",				
+				"admin_label" => false,
+				"heading" => __( "Container ID", "my-text-domain" ),
+				"param_name" => "container_id",
+				"value" => __( "collapsibleNavbar", "my-text-domain" ),
+				"description" => __( "You can add any class.", "my-text-domain" )
+			),
+			array(
 				"type" => "textfield",			
 				"admin_label" => false,
 				"heading" => __( "Container Class", "my-text-domain" ),
@@ -155,14 +163,6 @@ function navigationVC() {
 				"heading" => __( "Menu Class", "my-text-domain" ),
 				"param_name" => "menu_class",
 				"value" => __( "collapse navbar-collapse", "my-text-domain" ),
-				"description" => __( "You can add any class.", "my-text-domain" )
-			),
-			array(
-				"type" => "textfield",				
-				"admin_label" => false,
-				"heading" => __( "Menu ID", "my-text-domain" ),
-				"param_name" => "menu_id",
-				"value" => __( "collapsibleNavbar", "my-text-domain" ),
 				"description" => __( "You can add any class.", "my-text-domain" )
 			),
 			array(
