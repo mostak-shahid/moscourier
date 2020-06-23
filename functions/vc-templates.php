@@ -92,7 +92,7 @@ function navigation_func( $atts = array(), $content = '' ) {
 						'menu'            => $atts['menu_name'],
 						'container'       => $atts['container'],
 						'container_class' => $atts['container_class'],
-						'menu_class'      => $atts['menu_id'],
+						'menu_id'      => $atts['menu_id'],
 						'menu_class'      => $atts['menu_class'],
 						'depth'           => 2,
 						'fallback_cb'     => 'bs4navwalker::fallback',
