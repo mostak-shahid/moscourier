@@ -186,6 +186,14 @@ function navigationVC() {
 					'No' => 'no', 
 				)
 			),
+			array(
+				"type" => "textfield",			
+				"admin_label" => false,
+				"heading" => __( "Logo Class", "my-text-domain" ),
+				"param_name" => "logo_class",
+				"value" => __( "", "my-text-domain" ),
+				"description" => __( "You can add any class.", "my-text-domain" )
+			),
             // Design Options
             array(
 	            'type' => 'css_editor',
