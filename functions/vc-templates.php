@@ -72,13 +72,14 @@ function navigation_func( $atts = array(), $content = '' ) {
 	    'menu_class'        => 'navbar-nav ml-auto',
 	    'menu_type'        => 'bootstrap',
 	    'logo'        => 'yes',
+	    'logo_class'        => '',
 	), $atts, 'navigation' );
 	$html = '';
 	if ($atts['menu_name']) :
 				$html .= '<nav class="navbar navbar-expand-md navbar-light '.$atts['nav_class'].'">';	
 				if ($atts['logo'] == 'yes') :
 
-					$html .= '<a class="navbar-brand" href="'.home_url().'">';
+					$html .= '<a class="navbar-brand '.$atts['logo_class'].'" href="'.home_url().'">';
 					if($moscourier_options['logo']['url']) :
 						$html .= '<img class="img-responsive img-fluid" src="'.$moscourier_options['logo']['url'].'" width="'.$moscourier_options['logo']['width'].'" height="'.$moscourier_options['logo']['height'].'" alt="'.get_bloginfo( 'name' ).' - Logo">';
 					endif;
