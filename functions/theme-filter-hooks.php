@@ -91,6 +91,7 @@ function register_form_submission_func(){
         if( isset( $_POST['register_user_form_field'] ) && wp_verify_nonce( $_POST['register_user_form_field'], 'register_user_form') ) {
             $user_email = sanitize_text_field( $_POST['email'] );
             $brand_name = sanitize_text_field( $_POST['brand_name'] );
+            $phone = sanitize_text_field( $_POST['phone'] );
             $login_url = sanitize_text_field( $_POST['login-url'] );
             $password = $_POST['password'];
             $user_id = username_exists( $user_email );           
