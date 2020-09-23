@@ -38,7 +38,6 @@ function home_url_func( $atts = array(), $content = '' ) {
 	$atts = shortcode_atts( array(
 		'slug' => '',
 	), $atts, 'home-url' );
-
 	return home_url( $atts['slug'] );
 }
 add_shortcode( 'home-url', 'home_url_func' );
